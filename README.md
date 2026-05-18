@@ -1,58 +1,37 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ágora
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Una aplicación web para gestionar jornadas de capacitación. Comisionado por el Instituto de Profesorado Sedes Sapientiae.
 
-## About Laravel
+Actualmente en desarrollo, vea las [Incidencias](https://github.com/Agora-Sedes/Agora/issues) y las [Solicitudes de Cambios](https://github.com/Agora-Sedes/Agora/pulls) para ver el progreso actual.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Inscripción de oyentes
+  - Formulario que solicita datos de identificación y contacto
+  - Pago con Mercado Pago, tarjeta de débito o crédito, en RapiPago y más utilizando la API de Mercado Pago
+  - Capacidad de inscribir más de un oyente a la vez
+  - Verificación de pagos presenciales mediante códigos QR
+  - Verificación de asistencias presenciales mediante códigos QR
+- Panel de administradores
+  - Inscripción de oyentes de último momento (cobro físico el mismo día de la charla, sin QR de verificación)
+  - Editor de información sobre jornadas y charlas
+  - Generación de certificados firmados digitalmente para certificar asistencias
+  - Registros de jornadas anteriores, en caso de requerir verificación por parte de un tercero autorizado
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Ejecución
 
-## Learning Laravel
+Utilizamos [Podman](https://podman.io/) con contenedores con [Alpine Linux](https://www.alpinelinux.org/) para garantizar entornos reproducibles.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Apenas clone el repositorio y cada vez que se añada una nueva dependencia, ejecute el siguiente comando para descargar las dependencias del proyecto:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```sh
+podman run --rm -it -v .:/app -w /app alpine:latest sh install-dependencies.sh
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Cada vez que quiera ejecutar el proyecto, utilice el siguiente comando:
 
-## Contributing
+```
+podman compose up --build
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+El servicio toma un poco menos de un minuto para iniciar completamente. Presione Control+C para detener el servicio.
