@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
             const title = context.payload.pull_request.title;
-            const validPrefixes = /^(feat|fix|docs|refactor|test|chore)(\(.+\))?: (.+)/;
+            const validPrefixes = /^(feat|fix|docs|refactor|test|chore|ci)(\(.+\))?: (.+)/;
 
             if (!validPrefixes.test(title)) {
               core.setFailed(`❌ El título de la PR no cumple con el formato.
