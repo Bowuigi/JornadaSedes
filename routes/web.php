@@ -18,3 +18,15 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::post('/buy', function (\Illuminate\Http\Request $request) {
+    $quantity = $request->input('entry', 1);
+    $method = $request->input('payment_method', 'value');
+    return redirect('/inscription?quantity=' . $quantity . '&method=' . $method);
+});
+Route::get('/buy', function () {
+    return view('buy-amount');
+});
+
+Route::get('/inscription', [App\Http\Controllers\InscriptionController::class, 'index']);
+Route::post('/inscription', [App\Http\Controllers\InscriptionController::class, 'store']);
