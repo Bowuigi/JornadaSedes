@@ -27,6 +27,3 @@ Route::post('/buy', function (\Illuminate\Http\Request $request) {
 Route::get('/buy', function () {
     return view('buy-amount');
 });
-
-Route::get('/inscription', [App\Http\Controllers\InscriptionController::class, 'index']);
-Route::post('/inscription', [App\Http\Controllers\InscriptionController::class, 'store']);
