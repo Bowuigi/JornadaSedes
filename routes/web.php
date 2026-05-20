@@ -18,4 +18,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/adminlogin',[AdminLogController::class,'index']);
+Route::post('/adminlogin',[AdminLogController::class,'store']);
 require __DIR__.'/auth.php';
